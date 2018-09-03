@@ -20,6 +20,7 @@
     * When invoking function, there is no space between ````(```` and function name.
     * There is no space bewteen function name and arguments list.
     * There is always a space between ````(```` and other elements.
+    ***
 3. **````;````**    
     Always put ````;```` at the end of the statement.    
     If omitted, the ````;```` will be added automatically unless the first token of the next line falls in the following charactors:    
@@ -34,14 +35,40 @@
     ```js
     x = y(function () {...})();
     ```
+    ***
+4. **Combining statements**    
+    Readability and robustness comes first, use different lines for different statements.
+    ***
+5. **Hoisting**    
+    Since variables will be hoisted, put them at the beginning of the code block. 
+    * Put all variable declarations at top of the function.
+    * Declare function before use.
+    ***
+6. **Global Variables**    
+    The biggest con for Javascript, try to avoid using it. If have to use it, use uppercase or something easey to notice, like a prefix g.
+    ***
+7. **Always use ````{}```` for blocks**
 
 
 # Things to avoid
-1. **== and !=**  
-   Use === and !== instead, since == will change the type.
+1. **````==````,  ````!=````, ````===````, ````!==````**  
+   Use ````===```` and ````!==```` instead, since ````==```` will change the type of variable.
    ***
 2. **with**  
-   Just never use it.
+   Just never use it.    
+   The useage is to reduce code, yet it might introduce problems:
+   ```js
+   　　with (o) {
+       foo = bar;
+   }
+   ```
+   The result for the code above can be as following, depending on whether the variable is defined:
+   ```js
+   o.foo = bar;
+   o.foo = o.bar;
+   foo = bar;
+   foo = o.bar;
+   ```
    ***
 3. **eval**     
    Safety and performance issue.  
@@ -75,7 +102,7 @@
    Use function expression instead for the reason of hoisting.
    ***
 10. **Don't use new**    
-    If forget new, the constructor function will be executed and create global variables, it is hard to debug. There is a work around:    
+    If forget new, the this in constructor function will be pointed to globe, all the variables for this will become global variables, it is hard to debug. There is a work around:    
    ```js
    　　Object.beget = function (o) {
 　　　　var F = function (o) {};
