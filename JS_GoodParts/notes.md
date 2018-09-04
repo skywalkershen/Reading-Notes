@@ -1,4 +1,7 @@
-# Tips for coding style
+# Reading notes for 《Javascript - The Good Parts》
+# Some important concepts
+1. 
+# Tips for coding style and things to notice
 1. **position of ````{````**    
     Use this style:    
     ```js
@@ -41,13 +44,47 @@
     ***
 5. **Hoisting**    
     Since variables will be hoisted, put them at the beginning of the code block. 
-    * Put all variable declarations at top of the function.
+    * Put all variable declarations at top of the function, don't declare at the site of first use.
     * Declare function before use.
     ***
 6. **Global Variables**    
     The biggest con for Javascript, try to avoid using it. If have to use it, use uppercase or something easey to notice, like a prefix g.
     ***
 7. **Always use ````{}```` for blocks**
+    ***
+8. **parseInt**    
+   A function converts string to integer, it stops when meets a nondigit. Note if first character of the string is 0, the string will be evaluated in base 8 instead of base 10. Be caucious if use it for parsing dates/ time. Or use radix parameter like ````parseInt('08', 10)```` to produce ````8````.
+   ***
+9. **Floating point**    
+    ````0.1 + 0.2```` is not ````0.3````! But integer arithmetic in floating point is exact, so decimal representation errors can be avoided by scaling.
+    ***
+10. **NaN**
+    Stands for not a number, yet ````typeof NaN === 'number'; // true````.
+    ***
+11. **Phony Arrays**    
+    The array is actually object with length member, the ````typeof```` does not distinguish between array and object, use ````Array.isArray()```` to check whether it is array. The length of array is not like its counterpart in other languages. 
+    ```js
+    var a = [];
+    a.length; // 0
+    a[10] = 1;
+    a.length; // 11
+    ```
+    ***
+12. **Phony values**    
+    Value | Type
+    --- | ---
+    0 | Number
+    NaN | Number
+    '' | String
+    false | Boolean
+    null | Object
+    undefined | Undefined
+    The values above are all falsy but not interchangeable. Never use something like ````== null```` to check invalid parameter.
+    ***
+13. **Object**    
+    Javascript object is never empty since they can always pick up members from the prototype chain.
+
+
 
 
 # Things to avoid
@@ -102,7 +139,7 @@
    Use function expression instead for the reason of hoisting.
    ***
 10. **Don't use new**    
-    If forget new, the this in constructor function will be pointed to globe, all the variables for this will become global variables, it is hard to debug. There is a work around:    
+    If forget new, the ````this```` in constructor function will be pointed to globe, all the variables for ````this```` will become global variables, it is hard to debug. There is a work around:    
    ```js
    　　Object.beget = function (o) {
 　　　　var F = function (o) {};
@@ -121,6 +158,7 @@
 
    myCat.name = 'mimi';
    ```
+   Avoid using typed wrappers with ````new````
    ***
 12. **void**    
     In other strong type languages like java, ````void```` is a type, yet in Javascript, void is an operator, it takes an operand and returns undefined:    
