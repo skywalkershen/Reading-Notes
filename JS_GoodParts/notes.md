@@ -1,6 +1,164 @@
 # Reading notes for 《Javascript - The Good Parts》
 # Some important concepts
-1. 
+1. **Global abatement with object**    
+   Can use single global variable:    
+   ```js
+   var Myapp = {};
+   Myapp.stooge = {
+       'fist-name': 'Joe',
+       'last-name': 'Howard'
+   };
+   Myapp.flight = {
+       airline: 'Oceanic',
+       number: 815,
+       departure: {
+           IATA: 'SYD',
+           time: '2004-09-23 10:32',
+           city: 'Sydney'
+       },
+       arrival: {
+           IATA: 'LAX',
+           time: '2004-09-23 10:42',
+           city: 'Los Angeles'
+       }
+   };
+   ```
+   ***
+2. **Function module**    
+   Module is a function or object that presents an interface while hiding state and implementation. By using function and closure to make moxules, we can avoid using global variables.    
+   A regular sugar used in this example:
+   ```js
+   Object.prototype.method = function (name, func) {
+       if (!this.prototype[name]) {
+           this.prototype[name] = func;
+       }
+   }
+   ```
+   ```js
+   String.method('deentityfy', function () {
+       var entity = {
+           quot: '"',
+           lt: '<', 
+           gt: '>'
+       };
+       return function () {
+           return this.replace(
+            /&([^&;]+);/g,
+            function (a, b) {
+                var r = entity[b];
+                return typeof r === 'string' ? r : a;
+            }
+        );
+       }
+   }());
+   ```
+   The general pattern of module is a function with private variables and functions, only the returned function has access to private variables and functions. Below is an example that returns an privilidged object for accessing the private variables:
+   ```js
+   var serial_maker = function () {
+       var prefix = '',
+           seq = 0;
+       return {
+           set_prefix: function (p) {
+               prefix = String(p);
+           },
+           set_seq: function (s) {
+               seq = s;
+           },
+           gensym: function () {
+               var result = prefix + seq;
+               seq += 1;
+               return result;
+           };
+       };
+   };
+   var seqer = serial_maker();
+   ```
+   ````seqer```` is mutable, yet the private variables can only be changed via the functions provided.
+   ***
+3. **Anonymous closure module pattern**    
+    ```js
+    var global = 'Hello, I am a global variable :)';
+
+    (function () {
+    // We keep these variables private inside this closure scope
+    
+    var myGrades = [93, 95, 88, 0, 55, 91];
+    
+    var average = function() {
+        var total = myGrades.reduce(function(accumulator, item) {
+        return accumulator + item}, 0);
+        
+        return 'Your average grade is ' + total / myGrades.length + '.';
+    }
+
+    var failing = function(){
+        var failingGrades = myGrades.filter(function(item) {
+        return item < 70;});
+        
+        return 'You failed ' + failingGrades.length + ' times.';
+    }
+
+    console.log(failing());
+    console.log(global);
+    }());
+
+    // 'You failed 2 times.'
+    // 'Hello, I am a global variable :)'
+
+        }());
+
+        // ‘You failed 2 times.’    
+    ```
+    This approach enables us to use local variables instead of overiting existing global varialbes, while still having access to global variables.     
+        
+    Note that the parentheses around the IIFE is required since the statements start with keyword ````function```` are considered to be function declarations, and it is not allowed to have unnamed function declaration in Javascript. The surrounding parentheses will turn the statement to function expression. [Encapsulated anonymous function syntax](https://stackoverflow.com/questions/1634268/explain-the-encapsulated-anonymous-function-syntax)
+***    
+4. **Global import module pattern**    
+   Like anonymous pattern, except pass in global variables as parameters.
+   ***
+5. **Object Interface module pattern**    
+   Create modules using self-contained object interface:    
+   ```js
+    var myGradesCalculate = (function () {
+        
+    // Keep this variable private inside this closure scope
+    var myGrades = [93, 95, 88, 0, 55, 91];
+    
+    var average = function() {
+        var total = myGrades.reduce(function(accumulator, item) {
+        return accumulator + item;
+        }, 0);
+        
+        return'Your average grade is ' + total / myGrades.length + '.';
+    };
+
+    var failing = function() {
+        var failingGrades = myGrades.filter(function(item) {
+            return item < 70;
+        });
+
+        return 'You failed ' + failingGrades.length + ' times.';
+    };
+
+    // Explicitly reveal public pointers to the private functions 
+    // that we want to reveal publicly
+
+    return {
+        average: average,
+        failing: failing
+    }
+    })();
+
+    myGradesCalculate.failing(); // 'You failed 2 times.' 
+    myGradesCalculate.average(); // 'Your average grade is 70.33333333333333.'
+   ```    
+   Like the function module, we can decide which variable/ function we want keep private by whether returning them.
+   ***
+6. **Memiozation**
+    Can be used to optimising recursive function by keeping record of previous results, the idea is similar to DP.    
+    TBC
+    ***
+7. **Inheritance**
 # Tips for coding style and things to notice
 1. **position of ````{````**    
     Use this style:    
@@ -26,6 +184,7 @@
     ***
 3. **````;````**    
     Always put ````;```` at the end of the statement.    
+        
     If omitted, the ````;```` will be added automatically unless the first token of the next line falls in the following charactors:    
     ````(````, ````[````, ````/````, ````+````, ````-````    
     ```js
@@ -48,7 +207,7 @@
     * Declare function before use.
     ***
 6. **Global Variables**    
-    The biggest con for Javascript, try to avoid using it. If have to use it, use uppercase or something easey to notice, like a prefix g.
+    The biggest con for Javascript, try to avoid using it. If have to use it, use uppercase or something easey to notice, like a prefix g. Also note that using prefix can avoid namespace pollution, yet too many global variables may slow some browsers down.
     ***
 7. **Always use ````{}```` for blocks**
     ***
@@ -89,7 +248,7 @@
 
 # Things to avoid
 1. **````==````,  ````!=````, ````===````, ````!==````**  
-   Use ````===```` and ````!==```` instead, since ````==```` will change the type of variable.
+   Use ````===```` and ````!==```` instead, since ````==```` will do type coersion before comparing.
    ***
 2. **with**  
    Just never use it.    
@@ -158,7 +317,7 @@
 
    myCat.name = 'mimi';
    ```
-   Avoid using typed wrappers with ````new````
+   Avoid using typed wrappers with ````new````.
    ***
 12. **void**    
     In other strong type languages like java, ````void```` is a type, yet in Javascript, void is an operator, it takes an operand and returns undefined:    
@@ -167,7 +326,44 @@
     ```
     It is not useful and brings trouble, so just don't use it.    
     ***
+13.**Using ````this```` to refer object being used as a namespace**    
+    Example without ````this```` :
+   ```js
+    var myApp = {};
+
+    myApp.message = 'hello';
+
+    myApp.sayHello = function() {
+    alert(myApp.message);
+    };
+
+    myApp.sayHello(); // works
+    
+    var importedfn = myApp.sayHello;
+
+    importedfn(); // works
+   ```   
+   With ````this````:    
+   ```js
+    var myApp = {};
+
+    myApp.message = 'hello';
+
+    myApp.sayHello = function() {
+    alert(this.message);
+    };
+
+    myApp.sayHello() // works because "this" refers to myApp object.
+
+    var importedfn = myApp.sayHello;
+
+    importedfn(); // error because "this" refers to global object.
+   ```    
+   ***
 
 # Reference
 1. [12种不宜使用的Javascript语法 ———— 阮一峰](http://www.ruanyifeng.com/blog/2010/01/12_Javascript_syntax_structures_you_should_not_use.html)
 2. [Javascript编程风格 ———— 阮一峰](http://www.ruanyifeng.com/blog/2012/04/Javascript_programming_style.html)
+3. [Javascript Modules: A Beginner's GUide](https://medium.freecodecamp.org/javascript-modules-a-beginner-s-guide-783f7d7a5fcc)
+4. [JavaScript Module Pattern: In-Depth](http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html)
+5. [Learning Javascript Design Patterns ———— Adnan Osmani](https://www.safaribooksonline.com/library/view/learning-javascript-design/9781449334840/)
