@@ -1,6 +1,6 @@
 # **Reading notes for 《JQUERY In Action》**    
-# **Useage**    
-1. **Document ready handler**    
+## **Useage**    
+1. ### **Document ready handler**    
    Should use ````$(document).ready```` rather than ````window.onload```` since we only need to wait till DOM loaded, not entire page fully loaded. The frequent use case:     
    ```js
     $(function() {
@@ -9,14 +9,14 @@
    ```
    By passing a function to ````$()````, the browser is instructed to wait till DOM fully loaded. Multiple use in the same HTML will leads to the execution of functions in the order they are declared.    
    ***
-2. **Extend JQuery for custom needs, serve as namespace for global utility functions**    
+2. ### **Extend JQuery for custom needs, serve as namespace for global utility functions**    
     ***
-3. **Selector for wrapping DOM elements**    
+3. ### **Selector for wrapping DOM elements**    
    ***
-4. **Create DOM elements from HTML markup**
+4. ### **Create DOM elements from HTML markup**
    ***
-# **Selector**
-1. Can use child, container, attribute selectors    
+## **Selector**
+1. ### **Can use child, container, attribute selectors**    
    Selector | Description
    --- | ---
    * | Maches any element.
@@ -33,8 +33,7 @@
    E[A^=V] | Matches all elements E with attribute A whose value begins with V.
    E[A$=V] | Matches all elements E with attribute A whose value ends with V.
    E[A*=V] | Matches all elements E with attribute A whose value contains V.
-2. Select by position
-   Can use child, container, attribute selectors    
+2. ### **Select by position, note the nth-child starts from 1 while other selectors start from 0.**  
    Selector | Description
    --- | ---
    :first | The first match of the page. li a:first returns the first link also under a list item.
@@ -49,5 +48,28 @@
    :eq(n) | The nth matching element.
    :gt(n) | Matching elements after (and excluding) the nth matching element.
    :lt(n) | Matching elements before (and excluding) the nth matching element.
-
+3. ### **Custom JQuery selectors**
+   Selector | Description
+   --- | ---
+   :animated |   Selects elements that are currently under animated control. Chapter 5 will cover animations and effects.
+   :button | Selects any button (input[type=submit], input[type=reset], input[type=button], or button).
+   :checkbox | Selects only check box elements (input[type=checkbox]).
+   :checked | Selects only check boxes or radio buttons that are checked (supported by CSS).
+   :contains(foo) | Selects only elements containing the text foo.
+   :disabled | Selects only form elements that are disabled in the interface (supported by CSS).
+   :enabled  | Selects only form elements that are enabled in the interface (supported by CSS).
+   :file | Selects all file elements (input[type=file]).
+   :header | Selects only elements that are headers; for example: ````<h1> through <h6> elements````.
+   :hidden | Selects only elements that are hidden.
+   :image | Selects form images (input[type=image]).
+   :input | Selects only form elements (input, select, textarea, button).
+   :not(filter) | Negates the specified filter.
+   :parent | Selects only elements that have children (including text), but not empty elements.
+   :password | Selects only password elements (input[type=password]).
+   :radio | Selects only radio elements (input[type=radio]).
+   :reset | Selects reset buttons (input[type=reset] or button[type=reset]).
+   :selected | Selects option elements that are selected.
+   :submit | Selects submit buttons (button[type=submit] or input[type=submit]).
+   :text | Selects only text elements (input[type=text]).
+   :visible | Selects only elements that are visible.
    
