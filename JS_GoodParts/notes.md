@@ -25,7 +25,7 @@
    ```
    ***
 2. ### **Function module**    
-   Module is a function or object that presents an interface while hiding state and implementation. By using function and closure to make moxules, we can avoid using global variables.    
+   Module is a function or object that presents an interface while hiding state and implementation. By using function and closure to make modules, we can avoid using global variables.    
    A regular sugar used in this example:
    ```js
    Object.prototype.method = function (name, func) {
@@ -104,19 +104,15 @@
 
     // 'You failed 2 times.'
     // 'Hello, I am a global variable :)'
-
-        }());
-
-        // ‘You failed 2 times.’    
     ```
     This approach enables us to use local variables instead of overiting existing global varialbes, while still having access to global variables.     
         
     Note that the parentheses around the IIFE is required since the statements start with keyword ````function```` are considered to be function declarations, and it is not allowed to have unnamed function declaration in Javascript. The surrounding parentheses will turn the statement to function expression. [Encapsulated anonymous function syntax](https://stackoverflow.com/questions/1634268/explain-the-encapsulated-anonymous-function-syntax)
 ***    
-4. ### **Global import module pattern**    
+1. ### **Global import module pattern**    
    Like anonymous pattern, except pass in global variables as parameters.
    ***
-5. ### **Object Interface module pattern**    
+2. ### **Object Interface module pattern**    
    Create modules using self-contained object interface:    
    ```js
     var myGradesCalculate = (function () {
@@ -154,11 +150,11 @@
    ```    
    Like the function module, we can decide which variable/ function we want keep private by whether returning them.
    ***
-6. ### **Memiozation**
+3. ### **Memiozation**
     Can be used to optimising recursive function by keeping record of previous results, the idea is similar to DP.    
     TBC
     ***
-7. ### **Inheritance**
+4. ### **Inheritance**
 ## **Tips for coding style and things to notice**
 1. ### **position of ````{````**    
     Use this style:    
@@ -300,11 +296,11 @@
 10. ### **Don't use new**    
     If forget new, the ````this```` in constructor function will be pointed to globe, all the variables for ````this```` will become global variables, it is hard to debug. There is a work around:    
     ```js
-   　　Object.beget = function (o) {
-　　　　var F = function (o) {};
-　　　　F.prototype = o ;
-　　　　return new F;
-　　};
+    　Object.beget = function (o) {
+    　　　var F = function (o) {};
+    　　　F.prototype = o ;
+    　　　return new F;
+    　};    
     ```    
    Use this function to manipulate the prototype object:
    ```js
