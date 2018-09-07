@@ -24,7 +24,7 @@
    };
    ```
    ***
-2. ### **Function module**    
+2. ### **Function module**    
    Module is a function or object that presents an interface while hiding state and implementation. By using function and closure to make modules, we can avoid using global variables.    
    A regular sugar used in this example:
    ```js
@@ -75,7 +75,7 @@
    ```
    ````seqer```` is mutable, yet the private variables can only be changed via the functions provided.
    ***
-3. ### **Anonymous closure module pattern**    
+2. ### **Anonymous closure module pattern**    
     ```js
     var global = 'Hello, I am a global variable :)';
 
