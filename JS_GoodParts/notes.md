@@ -25,7 +25,7 @@
    ```
    ***
 2. ### **Function module**    
-   Module is a function or object that presents an interface while hiding state and implementation. By using function and closure to make modules, we can avoid using global variables.    
+   Module is a function or object that presents an interface while hiding state and implementation. By using function and closure to make modules, we can avoid using global variables.    
    A regular sugar used in this example:
    ```js
    Object.prototype.method = function (name, func) {
