@@ -9,7 +9,7 @@
    ```
    By passing a function to ````$()````, the browser is instructed to wait till DOM fully loaded. Multiple use in the same HTML will leads to the execution of functions in the order they are declared.    
    ***
-2. ### **Extend jQuery for custom needs, serve as namespace       for global utility functions**    
+2. ### **Extend jQuery for custom needs, serve as namespace       for global utility functions**    
     ***
 3. ### **Selector for wrapping DOM elements**    
    ***
@@ -74,7 +74,7 @@
    :submit | Selects submit buttons (button[type=submit] or input[type=submit]).
    :text | Selects only text elements (input[type=text]).
    :visible | Selects only elements that are visible.
-4. ### **Use XPath(XML)
+4. ### **Use XPath(XML)**
 ***
 ## **Manipulating selected wrapped sets**
 Check doc and book for details
@@ -124,7 +124,7 @@ Check doc and book for details
    ````append(), prepend(), prependTo(), before(), insertBefore(), after(), insertAfter()````
    ***
 ## **EventHandler**
-1. ### **EventListener Execution Order**
+1. ### **EventListener execution order**
    Code example:
    ```js
     $(function(){
@@ -151,7 +151,7 @@ Check doc and book for details
    ```
    There is no guarantee the by the standard the execuction order is the same as the order of binding the eventhandlers. So never rely on this order.
    ***
-2. ### **jQuery Event Model Features**
+2. ### **jQuery event model features**
    * Provides a unified method for establishing event handlers.
    * Allows multiple handlers for each event type on each element.
    * Uses standard event-type names: for example, click or mouseover.
@@ -170,12 +170,12 @@ Check doc and book for details
    $('*').unbind('click.editMode');
    ```
    ***
-4. ### **Event Type Name**
+4. ### **Event type name**
    ■ blur ■ change ■ click ■ dblclick ■ error ■ focus ■ keydown ■ keypress ■ keyup ■ load ■ mousedown ■ mousemove ■ mouseout ■ mouseover ■ mouseup ■ resize ■ scroll ■ select ■ submit ■ unload    
        
    Note that when using these shortcut methods, we cannot specify a data value to be placed in the event.data property.
    ***
-5. ### **Stop Event Propagation**
+5. ### **Stop event propagation**
    Use ````stopPropagation()```` to prevent bubbling up the DOM tree, ````preventDefault()```` to cancel semantic action the event might cause. To do both, return ````false```` in listener function.
    ***
 6. ### **Triggering event handler**
@@ -183,7 +183,7 @@ Check doc and book for details
     
    Note since there is no event triggered, properties that report values has no value, location for mouse event for example.    
    ***
-## **JQuery Animation**
+## **JQuery animation**
 1. ### **Note for ````show(), hide()````**
    For element with init ````display```` property set to ````none````, ````show()```` will turn its ````display````, even if it is inline element.    
     
@@ -192,7 +192,7 @@ Check doc and book for details
    Thus, don't use ````style```` attributes on the elements we want initially hidden, but to apply the ````hide()```` command to them in the page’s ready handler. 
    ***
 ## **JQuery Utility Functions**
-1. ### **Object Detection**
+1. ### **Object detection**
    Note this method is still should be avoided in lieu of browser detection. It is put here for the idea behind it to approach to a problem by figuring out the core issue behind it.   
     
    Browser detection is unreliable and unnecessary, what matters is different browsers provides different methods for establishing listeners. So, the issue can be solved by checking the existance of certain methods.
