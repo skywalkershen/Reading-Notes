@@ -99,10 +99,10 @@
             });
             
             return 'You failed ' + failingGrades.length + ' times.';
-    }
+        }
 
-    console.log(failing());
-    console.log(global);
+        console.log(failing());
+        console.log(global);
     }());
 
     // 'You failed 2 times.'
@@ -178,7 +178,7 @@
 2. ### **````(````**    
     There are two uses for parentheses in Javascript, invoking function and grouping, use space to distinguish.    
     * When invoking function, there is no space between ````(```` and function name.
-    * There is no space bewteen function name and arguments list.
+    * There is no space bewteen function name and arguments list when declaring a function.
     * There is always a space between ````(```` and other elements.
     ***
 3. ### **````;````**    
@@ -361,8 +361,9 @@
    ***
 
 ## **Reference**
-1. [12种不宜使用的Javascript语法 ———— 阮一峰](http://www.ruanyifeng.com/blog/2010/01/12_Javascript_syntax_structures_you_should_not_use.html)
-2. [Javascript编程风格 ———— 阮一峰](http://www.ruanyifeng.com/blog/2012/04/Javascript_programming_style.html)
+1. [12种不宜使用的Javascript语法 ———— 阮一峰](http://www.ruanyifeng.com/blog/2010/01/12_javascript_syntax_structures_you_should_not_use.html)
+2. [Javascript编程风格 ———— 阮一峰](http://www.ruanyifeng.com/blog/2012/04/javascript_programming_style.html)
 3. [Javascript Modules: A Beginner's GUide](https://medium.freecodecamp.org/javascript-modules-a-beginner-s-guide-783f7d7a5fcc)
 4. [JavaScript Module Pattern: In-Depth](http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html)
 5. [Learning Javascript Design Patterns ———— Adnan Osmani](https://www.safaribooksonline.com/library/view/learning-javascript-design/9781449334840/)
+
