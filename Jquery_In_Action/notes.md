@@ -193,7 +193,7 @@ Check doc and book for details
    ***
 ## **JQuery Utility Functions**
 1. ### **Object detection**
-   Note this method is still should be avoided in lieu of browser detection. It is put here for the idea behind it to approach to a problem by figuring out the core issue behind it.   
+   It is put here for the idea behind it to approach to a problem by figuring out the core issue behind it.   
     
    Browser detection is unreliable and unnecessary, what matters is different browsers provides different methods for establishing listeners. So, the issue can be solved by checking the existance of certain methods.
    ***
