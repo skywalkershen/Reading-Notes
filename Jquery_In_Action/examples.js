@@ -152,3 +152,5 @@ $('div :first').appendDivTxt("I'm the input text~");
         
     };
 })(jQuery);
+
+$('body').geoCoding('北京',{1:'上海',2:'天河区',batch:true})
