@@ -76,7 +76,7 @@
    ```
    ````seqer```` is mutable, yet the private variables can only be changed via the functions provided.
    ***
-2. ### **Anonymous closure module pattern**    
+3. ### **Anonymous closure module pattern**    
     ```js
     var global = 'Hello, I am a global variable :)';
 
@@ -112,10 +112,10 @@
         
     Note that the parentheses around the IIFE is required since the statements start with keyword ````function```` are considered to be function declarations, and it is not allowed to have unnamed function declaration in Javascript. The surrounding parentheses will turn the statement to function expression. [Encapsulated anonymous function syntax](https://stackoverflow.com/questions/1634268/explain-the-encapsulated-anonymous-function-syntax)
 ***    
-1. ### **Global import module pattern**    
+4. ### **Global import module pattern**    
    Like anonymous pattern, except pass in global variables as parameters.
    ***
-2. ### **Object Interface module pattern**    
+5. ### **Object Interface module pattern**    
    Create modules using self-contained object interface:    
    ```js
     var myGradesCalculate = (function () {
@@ -153,11 +153,11 @@
    ```    
    Like the function module, we can decide which variable/ function we want keep private by whether returning them.
    ***
-3. ### **Memiozation**
+6. ### **Memiozation**
     Can be used to optimising recursive function by keeping record of previous results, the idea is similar to DP.    
     TBC
     ***
-4. ### **Inheritance**
+7. ### **Inheritance**
 ## **Tips for coding style and things to notice**
 1. ### **position of ````{````**    
     Use this style:    
