@@ -367,3 +367,4 @@
 4. [JavaScript Module Pattern: In-Depth](http://www.adequatelygood.com/JavaScript-Module-Pattern-In-Depth.html)
 5. [Learning Javascript Design Patterns ———— Adnan Osmani](https://www.safaribooksonline.com/library/view/learning-javascript-design/9781449334840/)
 
+6. [Javascript Inheritance Patterns](http://davidshariff.com/blog/javascript-inheritance-patterns/)
