@@ -120,32 +120,32 @@
    ```js
     var myGradesCalculate = (function () {
         
-    // Keep this variable private inside this closure scope
-    var myGrades = [93, 95, 88, 0, 55, 91];
-    
-    var average = function() {
-        var total = myGrades.reduce(function(accumulator, item) {
-        return accumulator + item;
-        }, 0);
+        // Keep this variable private inside this closure scope
+        var myGrades = [93, 95, 88, 0, 55, 91];
         
-        return'Your average grade is ' + total / myGrades.length + '.';
-    };
+        var average = function() {
+            var total = myGrades.reduce(function(accumulator, item) {
+                return accumulator + item;
+            }, 0);
+            
+            return'Your average grade is ' + total / myGrades.length + '.';
+        };
 
-    var failing = function() {
-        var failingGrades = myGrades.filter(function(item) {
-            return item < 70;
-        });
+        var failing = function() {
+            var failingGrades = myGrades.filter(function(item) {
+                return item < 70;
+            });
 
-        return 'You failed ' + failingGrades.length + ' times.';
-    };
+            return 'You failed ' + failingGrades.length + ' times.';
+        };
 
-    // Explicitly reveal public pointers to the private functions 
-    // that we want to reveal publicly
+        // Explicitly reveal public pointers to the private functions 
+        // that we want to reveal publicly
 
-    return {
-        average: average,
-        failing: failing
-    }
+        return {
+            average: average,
+            failing: failing
+        }
     })();
 
     myGradesCalculate.failing(); // 'You failed 2 times.' 
@@ -340,7 +340,7 @@
     myApp.message = 'hello';
 
     myApp.sayHello = function() {
-    alert(myApp.message);
+        alert(myApp.message);
     };
 
     myApp.sayHello(); // works
@@ -356,7 +356,7 @@
     myApp.message = 'hello';
 
     myApp.sayHello = function() {
-    alert(this.message);
+        alert(this.message);
     };
 
     myApp.sayHello() // works because "this" refers to myApp object.
