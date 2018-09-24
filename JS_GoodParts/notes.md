@@ -157,7 +157,14 @@
     Can be used to optimising recursive function by keeping record of previous results, the idea is similar to DP.    
     TBC
     ***
-7. ### **Inheritance**
+7. ### **Pseudoclassical inheritance**
+   Pseudoclassical pattern uses constructor and prototype to implement inheritance by passing the parent prototype to child prototype. Note that since javascript passes objects by reference, so if parrent prototype is passed to children directly, the change at childern will change the parent. Thus, a temporary object in between is needed to receive parent prototype and link child prototype to the temp object. See #3 in examples.js.
+   ***
+8. ### **Functional inheritance**
+   This pattern allows the developer to create an object with the parent to inherit parent's property and then modify the returned parent prototype during the child creation. See #4 in examples.js.
+   ***
+9. ### **Prototypal pattern**
+    This pattern uses an object as model to create its clone to pass its proterties. See #5 in examples.js
 ## **Tips for coding style and things to notice**
 1. ### **position of ````{````**    
     Use this style:    
